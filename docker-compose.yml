@@ -20,5 +20,5 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - ./FFRHAS:/opt/FFRHAS
+      - ./FFRHAS/HAS:/opt/FFRHAS/HAS
     command: python3 /opt/FFRHAS/HAS/app.py
