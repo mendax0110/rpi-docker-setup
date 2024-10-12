@@ -25,14 +25,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install Flask
 RUN pip3 install Flask
 
-# Add MongoDB repository for ARM64 (MongoDB 5.0)
-RUN wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add - && \
-    echo "deb [ arch=arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
+# Add MongoDB repository for ARM64 (MongoDB 4.4)
+RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add - && \
+    echo "deb [ arch=arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiv>
 
 # Install MongoDB
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    mongodb-org \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    mongodb-org
 
 # Set up MongoDB directories and permissions
 RUN mkdir -p /data/db && chown -R mongodb:mongodb /data/db
