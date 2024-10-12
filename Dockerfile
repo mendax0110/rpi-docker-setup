@@ -1,4 +1,4 @@
-# Dockerfile for Raspberry Pi-compatible environment
+# Use a Raspberry Pi-compatible Debian base image
 FROM arm32v7/debian:bullseye-slim
 
 # Set environment variables
@@ -18,11 +18,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-pip \
     python3-dev \
     build-essential \
-    mongodb \
+    mongodb-server \
     git \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Set up network configurations
+# Set up network configurations (optional)
 COPY init-scripts/setup-network.sh /usr/local/bin/setup-network.sh
 RUN chmod +x /usr/local/bin/setup-network.sh && /usr/local/bin/setup-network.sh
 
