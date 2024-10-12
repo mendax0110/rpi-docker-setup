@@ -41,3 +41,75 @@ docker run -d --name rpi-env-container -p 27017:27017 -p 5000:5000 rpi-env
 ```bash
 docker-compose up -d
 ```
+
+### 5. General important Docker commands:
+
+- 1. Check the logs
+```bash
+docker-compose logs
+```
+
+- 2. Check the logs realtime
+```bash
+docker-compose logs -f
+```
+
+- 3. Check the logs of specific service
+```bash
+docker-compose logs <service-name>
+```
+
+- 4. Restart Services
+```bash
+docker-compose restart
+```
+
+- 5. Restart specific service
+```bash
+docker-compose restart <service-name>
+```
+
+- 6. Start Services
+```bash
+docker-compose up
+```
+
+- 7. Start Services in background
+```bash
+docker-compose up -d
+```
+
+- 8. Start specific service
+```bash
+docker-compose up <service-name>
+```
+
+- 9. Stop Services
+```bash
+docker-compose stop
+```
+
+- 10. Stop specific service
+```bash
+docker-compose stop <service-name>
+```
+
+- 11. Rebuild Services
+```bash
+docker-compose build
+```
+
+- 12. Rebuild without cache
+```bash
+docker-compose build --no-cache
+```
+
+- 13. Check Status
+```bash
+docker-compose ps
+```
+
+- 14. Shut down and remove all containers
+```bash
+docker-compose down
+```
