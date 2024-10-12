@@ -1,5 +1,5 @@
-# Use a Raspberry Pi-compatible Ubuntu base image (arm32v7 architecture)
-FROM arm32v7/ubuntu:20.04
+# Use a Raspberry Pi-compatible Ubuntu base image (64-bit architecture)
+FROM arm64v8/ubuntu:20.04
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
@@ -22,9 +22,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Add MongoDB repository
-RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add - && \
-    echo "deb [ arch=arm64,armhf ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+# Add MongoDB repository for ARM64 (MongoDB 5.0)
+RUN wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add - && \
+    echo "deb [ arch=arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
 
 # Install MongoDB
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -33,12 +33,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Set up MongoDB directories and permissions
 RUN mkdir -p /data/db && chown -R mongodb:mongodb /data/db
-
-# Copy application from the FFRHAS submodule
-COPY FFRHAS /opt/FFRHAS
-
-# Install Python dependencies from the FFRHAS repository
-RUN pip3 install --upgrade pip && pip3 install -r /opt/FFRHAS/requirements.txt
 
 # Expose MongoDB and Flask app ports
 EXPOSE 27017
