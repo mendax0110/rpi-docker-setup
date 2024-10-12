@@ -1,4 +1,4 @@
-# Use a Raspberry Pi-compatible Ubuntu base image
+# Use a Raspberry Pi-compatible Ubuntu base image (arm32v7 architecture)
 FROM arm32v7/ubuntu:20.04
 
 # Set environment variables
@@ -18,18 +18,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-pip \
     python3-dev \
     build-essential \
-    mongodb-server \
+    gnupg \
     git \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Set up network configurations (optional)
-COPY init-scripts/setup-network.sh /usr/local/bin/setup-network.sh
-RUN chmod +x /usr/local/bin/setup-network.sh && /usr/local/bin/setup-network.sh
+# Add MongoDB repository
+RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add - && \
+    echo "deb [ arch=arm64,armhf ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
 
-# Create user 'pi' and set password
-RUN useradd -ms /bin/bash pi && echo "pi:raspberry" | chpasswd && usermod -aG sudo pi
+# Install MongoDB
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    mongodb-org \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Set up MongoDB directories
+# Set up MongoDB directories and permissions
 RUN mkdir -p /data/db && chown -R mongodb:mongodb /data/db
 
 # Copy application from the FFRHAS submodule
