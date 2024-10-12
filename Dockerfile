@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-pip \
     python3-dev \
     build-essential \
-    mongodb \
+    mongodb-server \
     git \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
