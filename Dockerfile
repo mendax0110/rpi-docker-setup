@@ -1,5 +1,5 @@
-# Use a Raspberry Pi-compatible Debian base image
-FROM arm32v7/debian:bullseye-slim
+# Use a Raspberry Pi-compatible Ubuntu base image
+FROM arm32v7/ubuntu:20.04
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-pip \
     python3-dev \
     build-essential \
-    mongodb-server \
+    mongodb \
     git \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
