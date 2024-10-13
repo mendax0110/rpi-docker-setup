@@ -37,6 +37,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Set up MongoDB directories and permissions
 RUN mkdir -p /data/db && chown -R mongodb:mongodb /data/db
 
+# Copy the FFRHAS submodule to the image
+COPY FFRHAS /opt/FFRHAS
+
 # Expose MongoDB and Flask app ports
 EXPOSE 27017
 EXPOSE 5000
