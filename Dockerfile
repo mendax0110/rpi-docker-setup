@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Install Flask and cors
 RUN pip3 install Flask
-RUN pip3 install Flask-Cors
+RUN pip install Flask-Cors
 
 # Add MongoDB repository for ARM64 (MongoDB 4.4)
 RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | gpg --dearmor -o /usr/share/keyrings/mongodb.gpg && \
