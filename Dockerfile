@@ -21,6 +21,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gnupg \
     git \
     gnupg2 \
+    ranger \
+    screen \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Flask and cors
