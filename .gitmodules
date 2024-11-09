@@ -1,3 +1,4 @@
 [submodule "FFRHAS"]
 	path = FFRHAS
 	url = https://github.com/mendax0110/FFRHAS.git
+	branch = main
