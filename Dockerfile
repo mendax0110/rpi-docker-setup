@@ -64,6 +64,9 @@ ENV GF_PATHS_PROVISIONING /etc/grafana/provisioning
 # Expose Grafana port
 EXPOSE 3000
 
+# Swich to root to get permissions for shell scripts
+USER root
+
 # Copy entrypoint script
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
