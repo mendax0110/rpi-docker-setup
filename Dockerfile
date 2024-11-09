@@ -5,6 +5,9 @@ FROM arm64v8/ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 
+# Swich to root to get permissions for shell scripts
+USER root
+
 # Update system and install essential packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
@@ -63,9 +66,6 @@ ENV GF_PATHS_PROVISIONING /etc/grafana/provisioning
 
 # Expose Grafana port
 EXPOSE 3000
-
-# Swich to root to get permissions for shell scripts
-USER root
 
 # Copy entrypoint script
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
