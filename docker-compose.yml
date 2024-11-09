@@ -1,4 +1,5 @@
 version: '3.8'
+
 services:
   mongodb:
     image: arm64v8/mongo:4.4.6
@@ -14,6 +15,7 @@ services:
   app:
     build:
       context: .
+      dockerfile: Dockerfile.app  # Use the refactored Flask app Dockerfile
     container_name: ffrhas-app
     environment:
       - FLASK_ENV=development
@@ -21,7 +23,8 @@ services:
       - "5000:5000"
     volumes:
       - ./FFRHAS/HAS:/opt/FFRHAS/HAS
-    command: python3 /opt/FFRHAS/HAS/app.py
+    depends_on:
+      - mongodb
 
   grafana:
     image: grafana/grafana-oss:latest-ubuntu
