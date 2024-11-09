@@ -69,7 +69,7 @@ EXPOSE 3000
 
 # Copy entrypoint script
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
+RUN chmod u+x /usr/local/bin/entrypoint.sh
 
 # Start the services
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
