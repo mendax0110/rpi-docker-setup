@@ -47,6 +47,23 @@ COPY FFRHAS /opt/FFRHAS
 EXPOSE 27017
 EXPOSE 5000
 
+# Grafana Section: Use the official ARM64 Grafana image
+FROM grafana/grafana-oss:latest-ubuntu as grafana
+
+# Set up Grafana directories and environment variables
+ENV GF_PATHS_CONFIG /etc/grafana/grafana.ini
+ENV GF_PATHS_DATA /var/lib/grafana
+ENV GF_PATHS_HOME /usr/share/grafana
+ENV GF_PATHS_LOGS /var/log/grafana
+ENV GF_PATHS_PLUGINS /var/lib/grafana/plugins
+ENV GF_PATHS_PROVISIONING /etc/grafana/provisioning
+
+# Install additional Grafana plugins
+#RUN grafana-cli plugins install grafana-clock-panel
+
+# Expose Grafana port
+EXPOSE 3000
+
 # Copy entrypoint script
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
