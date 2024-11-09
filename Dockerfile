@@ -28,10 +28,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     screen \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install Flask and cors
-RUN pip3 install Flask
-RUN pip3 install Flask-Cors
-
 # Add MongoDB repository for ARM64 (MongoDB 4.4)
 RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | gpg --dearmor -o /usr/share/keyrings/mongodb.gpg && \
     echo "deb [signed-by=/usr/share/keyrings/mongodb.gpg arch=arm64] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" > /etc/apt/sources.list.d/mongodb-org-4.4.list
@@ -45,6 +41,9 @@ RUN mkdir -p /data/db && chown -R mongodb:mongodb /data/db
 
 # Copy the FFRHAS submodule to the image
 COPY FFRHAS /opt/FFRHAS
+
+#install python requirements
+RUN pip3 install -r /opt/FFRHAS/HAS/requirements.txt
 
 # Expose MongoDB and Flask app ports
 EXPOSE 27017
