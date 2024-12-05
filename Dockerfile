@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir -r /opt/FFRHAS/HAS/requirements.txt
 EXPOSE 5000
 
 # Command to run the application
-CMD ["flask", "run", "--host=0.0.0.0", "--port=5000", "--app=/opt/FFRHAS/HAS/App.py"]
+CMD ["python3", "/opt/FFRHAS/HAS/app.py"]
