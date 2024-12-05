@@ -11,17 +11,15 @@ services:
     volumes:
       - ./mongo/data:/data/db
 
-  app:
-    build:
-      context: .
-    container_name: ffrhas-app
-    environment:
-      - FLASK_ENV=development
-    ports:
-      - "5000:5000"
-    volumes:
-      - ./FFRHAS/HAS:/opt/FFRHAS/HAS
-    command: python3 /opt/FFRHAS/HAS/app.py
+  web:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      ports:
+        - "5000:5000"
+      environment:
+        - FLASK_ENV=development
+        - FLASK_APP=/opt/FFRHAS/HAS/App.py
 
   grafana:
     image: grafana/grafana-oss:latest-ubuntu
