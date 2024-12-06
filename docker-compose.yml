@@ -31,12 +31,14 @@ services:
     environment:
       - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER}
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD}
+      GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: haohanyang-mongodb-datasource
     ports:
       - "3000:3000"
     networks:
       - app_network
     volumes:
-      - grafana_storage:/var/lib/grafana
+      - ./grafana_storage:/var/lib/grafana
+      - ./mongodb_datasource:/var/lib/grafana/plugins/haohanyang-mongodb-datasource
     depends_on:
       - mongodb
 
