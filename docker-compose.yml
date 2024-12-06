@@ -42,10 +42,6 @@ services:
     depends_on:
       - mongodb
 
-volumes:
-  grafana_storage:
-    driver: local
-
 networks:
   app_network:
     driver: bridge
