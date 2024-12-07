@@ -38,7 +38,6 @@ services:
     networks:
       - app_network
     volumes:
-      - ./grafana_custom:/etc/grafana
       - ./grafana_storage:/var/lib/grafana
       - ./mongodb_datasource:/var/lib/grafana/plugins/haohanyang-mongodb-datasource
     depends_on:
