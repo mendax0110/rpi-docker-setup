@@ -8,15 +8,19 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     ports:
       - "27017:27017"
+    networks:
+      - app_network
     volumes:
       - ./mongo/data:/data/db
 
-  web:
+  flask_app:
       build:
         context: .
         dockerfile: Dockerfile
       ports:
         - "5000:5000"
+      networks:
+        - app_network
       environment:
         - FLASK_ENV=development
         - FLASK_APP=/opt/FFRHAS/HAS/App.py
@@ -25,15 +29,20 @@ services:
     image: grafana/grafana-oss:latest-ubuntu
     container_name: grafana
     environment:
-      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER}
-      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD}
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD}
+      GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: haohanyang-mongodb-datasource
     ports:
       - "3000:3000"
+    networks:
+      - app_network
     volumes:
-      - grafana_storage:/var/lib/grafana
+      - ./grafana/grafana_custom:/etc/grafana
+      - ./grafana/grafana_storage:/var/lib/grafana
+      - ./grafana/mongodb_datasource:/var/lib/grafana/plugins/haohanyang-mongodb-datasource
     depends_on:
       - mongodb
 
-volumes:
-  grafana_storage:
-    driver: local
+networks:
+  app_network:
+    driver: bridge
