@@ -1,0 +1,14 @@
+apiVersion: 1
+
+datasources:
+  - name: MongoDB
+    type: haohanyang-mongodb-datasource
+    access: proxy
+    url: mongodb://mongodb:27017
+    isDefault: true
+    jsonData:
+      database: Test
+      authMethod: "basic"
+      user: "admin"
+    secureJsonData:
+      password: "secret"

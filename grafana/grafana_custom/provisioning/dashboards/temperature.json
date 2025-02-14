@@ -1,0 +1,117 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 2,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "haohanyang-mongodb-datasource",
+        "uid": "temperature"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "sensor_name"
+          }
+        ]
+      },
+      "pluginVersion": "11.4.0",
+      "targets": [
+        {
+          "collection": "Test",
+          "datasource": {
+            "type": "haohanyang-mongodb-datasource",
+            "uid": "ee90gbjnrahvkf"
+          },
+          "queryLanguage": "json",
+          "queryText": "[\r\n  {\r\n    \"$sort\": {\r\n      \"timestamp\": -1\r\n    }\r\n  },\r\n  {\r\n    \"$limit\": 10\r\n  }\r\n]",
+          "queryType": "table",
+          "refId": "A"
+        }
+      ],
+      "title": "Panel Title",
+      "type": "table"
+    }
+  ],
+  "preload": false,
+  "schemaVersion": 40,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Test_MongoDB",
+  "uid": "ceayqb7p5n1fkc",
+  "version": 3,
+  "weekStart": ""
+}
