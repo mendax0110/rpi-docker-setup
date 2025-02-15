@@ -86,7 +86,7 @@
           "collection": "Test",
           "datasource": {
             "type": "haohanyang-mongodb-datasource",
-            "uid": "ee90gbjnrahvkf"
+            "uid": "MongoDB"
           },
           "queryLanguage": "json",
           "queryText": "[\r\n  {\r\n    \"$sort\": {\r\n      \"timestamp\": -1\r\n    }\r\n  },\r\n  {\r\n    \"$limit\": 10\r\n  }\r\n]",
