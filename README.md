@@ -22,6 +22,7 @@ git clone https://github.com/yourusername/rpi-docker-setup.git
 cd rpi-docker-setup
 git submodule init
 git submodule update --init --recursive
+sudo chmod -R 777 grafana
 ```
 
 ### 2. Build the Docker image:
