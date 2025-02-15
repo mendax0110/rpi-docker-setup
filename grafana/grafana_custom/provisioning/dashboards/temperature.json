@@ -24,7 +24,7 @@
     {
       "datasource": {
         "type": "haohanyang-mongodb-datasource",
-        "uid": "temperature"
+        "uid": "MongoDB"
       },
       "fieldConfig": {
         "defaults": {
@@ -83,7 +83,7 @@
       "pluginVersion": "11.4.0",
       "targets": [
         {
-          "collection": "Test",
+          "collection": "SensorData",
           "datasource": {
             "type": "haohanyang-mongodb-datasource",
             "uid": "MongoDB"
