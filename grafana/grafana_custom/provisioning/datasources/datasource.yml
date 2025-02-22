@@ -7,9 +7,10 @@ datasources:
     access: proxy
     url: mongodb://mongodb:27017
     isDefault: true
-    jsonData:
-      database: Test
-      authMethod: "basic"
-      user: "admin"
+    user: "admin"
+    database: "Test"
+    basicAuth: true
+    basicAuthUser: "admin"
     secureJsonData:
       password: "secret"
+      basicAuthPassword: "secret"
