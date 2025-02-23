@@ -94,7 +94,7 @@
           "refId": "A"
         }
       ],
-      "title": "Panel Title",
+      "title": "Sensor_A",
       "type": "table"
     }
   ],
@@ -110,8 +110,8 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Test_MongoDB",
-  "uid": "ceayqb7p5n1fkc",
+  "title": "Temperature",
+  "uid": "temperature",
   "version": 3,
   "weekStart": ""
 }
