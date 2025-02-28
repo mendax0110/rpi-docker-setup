@@ -1,0 +1,14 @@
+apiVersion: 1
+datasources:
+  - name: MongoDB
+    type: haohanyang-mongodb-datasource
+    access: proxy
+    jsonData:
+      authType: auth-username-password
+      connectionStringScheme: standard
+      database: Test
+      host: mongodb
+      port: 27017
+      username: admin
+    secureJsonData:
+      password: secret
