@@ -18,7 +18,7 @@ This repository contains Docker configurations and scripts to set up a Raspberry
 ### 1. Clone the repository and initialize the submodule:
 
 ```bash
-git clone https://github.com/yourusername/rpi-docker-setup.git
+git clone https://github.com/mendax0110/rpi-docker-setup.git
 cd rpi-docker-setup
 git submodule init
 git submodule update --init --recursive
