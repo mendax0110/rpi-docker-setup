@@ -1,0 +1,26 @@
+{
+  "adrian.goessl@outlook.com": {
+    "name": "m3ndax",
+    "hours": 11,
+    "commits": 34
+  },
+  "52537419+mendax0110@users.noreply.github.com": {
+    "name": "Adrian",
+    "hours": 11,
+    "commits": 22
+  },
+  "139453039+FelixLatzer@users.noreply.github.com": {
+    "name": "FelixLatzer",
+    "hours": 17,
+    "commits": 42
+  },
+  "latzer.felix@gmail.com": {
+    "name": "Felix Latzer",
+    "hours": 18,
+    "commits": 30
+  },
+  "total": {
+    "hours": 57,
+    "commits": 128
+  }
+}
