@@ -1,0 +1,7 @@
+SETUP:
+
+https://dev.to/behainguyen/raspberry-pi-4b-natively-build-a-64-bit-fully-preemptible-kernel-real-time-with-desktop-1afj
+
+TESTING:
+
+https://www.osadl.org/uploads/media/mklatencyplot.bash
