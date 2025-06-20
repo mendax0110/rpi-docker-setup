@@ -25,25 +25,19 @@ git submodule update --init --recursive
 sudo chmod -R 777 grafana
 ```
 
-### 2. Allow all on grafana directory:
-
-```bash
-chmod 777 grafana
-```
-
-### 3.  Build the Docker image:
+### 2.  Build the Docker image:
 
 ```bash
 docker-compose build --no-cache
 ```
 
-### 4. Orchestrate with Docker Compose:
+### 3. Orchestrate with Docker Compose:
 
 ```bash
 docker-compose up -d
 ```
 
-### 5. General important Docker commands:
+### 4. General important Docker commands:
 
 - 1. Check the logs
 ```bash
