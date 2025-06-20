@@ -1,6 +1,8 @@
 # Use the official Python image as a base
 FROM python:3.9-slim
 
+ENV connectionstring="mongodb://admin:secret@mongodb:27017"
+
 # Set the working directory
 WORKDIR /app
 
