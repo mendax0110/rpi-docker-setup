@@ -25,16 +25,16 @@ git submodule update --init --recursive
 sudo chmod -R 777 grafana
 ```
 
-### 2. Build the Docker image:
+### 2. Allow all on grafana directory:
 
 ```bash
-docker build -t rpi-env .
+chmod 777 grafana
 ```
 
-### 3. Run the Docker container:
+### 3.  Build the Docker image:
 
 ```bash
-docker run -d --name rpi-env-container -p 27017:27017 -p 5000:5000 rpi-env
+docker-compose build --no-cache
 ```
 
 ### 4. Orchestrate with Docker Compose:
