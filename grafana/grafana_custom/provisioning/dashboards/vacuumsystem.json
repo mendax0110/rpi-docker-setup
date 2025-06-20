@@ -357,7 +357,7 @@
           "options": {
             "conversions": [
               {
-                "dateFormat": "",
+                "dateFormat": "yyyy-MM-DDThh:mm:ssZ",
                 "destinationType": "time",
                 "targetField": "timestamp"
               }

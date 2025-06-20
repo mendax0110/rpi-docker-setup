@@ -123,6 +123,7 @@
           "options": {
             "conversions": [
               {
+                "dateFormat": "yyyy-MM-DDThh:mm:ssZ",
                 "destinationType": "time",
                 "targetField": "timestamp"
               }
@@ -235,6 +236,7 @@
           "options": {
             "conversions": [
               {
+                "dateFormat": "yyyy-MM-DDThh:mm:ssZ",
                 "destinationType": "time",
                 "targetField": "timestamp"
               }
@@ -347,6 +349,7 @@
           "options": {
             "conversions": [
               {
+                "dateFormat": "yyyy-MM-DDThh:mm:ssZ",
                 "destinationType": "time",
                 "targetField": "timestamp"
               }

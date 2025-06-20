@@ -125,6 +125,7 @@
             "options": {
               "conversions": [
                 {
+                  "dateFormat": "yyyy-MM-DDThh:mm:ssZ",
                   "destinationType": "time",
                   "targetField": "timestamp"
                 }
@@ -235,7 +236,16 @@
         "transformations": [
           {
             "id": "convertFieldType",
-            "options": {}
+            "options": {
+              "conversions": [
+                {
+                  "dateFormat": "yyyy-MM-DDThh:mm:ssZ",
+                  "destinationType": "time",
+                  "targetField": "timestamp"
+                }
+              ],
+              "fields": {}
+            }
           }
         ],
         "type": "timeseries"
@@ -339,7 +349,16 @@
         "transformations": [
           {
             "id": "convertFieldType",
-            "options": {}
+            "options": {
+              "conversions": [
+                {
+                  "dateFormat": "yyyy-MM-DDThh:mm:ssZ",
+                  "destinationType": "time",
+                  "targetField": "timestamp"
+                }
+              ],
+              "fields": {}
+            }
           }
         ],
         "type": "timeseries"
@@ -469,7 +488,16 @@
         "transformations": [
           {
             "id": "convertFieldType",
-            "options": {}
+            "options": {
+              "conversions": [
+                {
+                  "dateFormat": "yyyy-MM-DDThh:mm:ssZ",
+                  "destinationType": "time",
+                  "targetField": "timestamp"
+                }
+              ],
+              "fields": {}
+            }
           }
         ],
         "type": "timeseries"
