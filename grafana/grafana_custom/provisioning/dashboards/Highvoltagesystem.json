@@ -18,9 +18,8 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 3,
   "links": [],
-  "liveNow": true,
   "panels": [
     {
       "datasource": {
@@ -30,7 +29,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "palette-classic"
           },
           "custom": {
             "axisBorderShow": false,
@@ -41,8 +40,8 @@
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
-            "fillOpacity": 20,
-            "gradientMode": "scheme",
+            "fillOpacity": 0,
+            "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
@@ -50,7 +49,7 @@
             },
             "insertNulls": false,
             "lineInterpolation": "linear",
-            "lineWidth": 2,
+            "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
@@ -74,16 +73,12 @@
                 "value": null
               },
               {
-                "color": "#EAB839",
-                "value": 50
-              },
-              {
                 "color": "red",
-                "value": 100
+                "value": 80
               }
             ]
           },
-          "unit": "celsius"
+          "unit": "%"
         },
         "overrides": []
       },
@@ -99,7 +94,7 @@
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "hideZeros": false,
@@ -116,12 +111,12 @@
             "uid": "MongoDB"
           },
           "queryLanguage": "json",
-          "queryText": "[\n  {\n    \"$match\": {\n      \"sensor_name\": \"get_temperature_MCP9601C_Outdoor\"\n    }\n  }\n]",
+          "queryText": "[\n  {\n    \"$match\": {\n      \"sensor_name\": \"dutyCycle\"\n    }\n  }\n]",
           "queryType": "table",
           "refId": "A"
         }
       ],
-      "title": "Temperature outside",
+      "title": "Dutycycle",
       "transformations": [
         {
           "id": "convertFieldType",
@@ -146,7 +141,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "mode": "palette-classic"
           },
           "custom": {
             "axisBorderShow": false,
@@ -157,8 +152,8 @@
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
-            "fillOpacity": 20,
-            "gradientMode": "scheme",
+            "fillOpacity": 0,
+            "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
@@ -166,7 +161,7 @@
             },
             "insertNulls": false,
             "lineInterpolation": "linear",
-            "lineWidth": 2,
+            "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
@@ -190,16 +185,12 @@
                 "value": null
               },
               {
-                "color": "#EAB839",
-                "value": 50
-              },
-              {
                 "color": "red",
-                "value": 100
+                "value": 80
               }
             ]
           },
-          "unit": "celsius"
+          "unit": "rothz"
         },
         "overrides": []
       },
@@ -215,7 +206,7 @@
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "hideZeros": false,
@@ -232,12 +223,12 @@
             "uid": "MongoDB"
           },
           "queryLanguage": "json",
-          "queryText": "[\n  {\n    \"$match\": {\n      \"sensor_name\": \"get_temperature_MCP9601C_Indoor\"\n    }\n  }\n]",
+          "queryText": "[\n  {\n    \"$match\": {\n      \"sensor_name\": \"frequency\"\n    }\n  }\n]",
           "queryType": "table",
           "refId": "A"
         }
       ],
-      "title": "Temperature inside",
+      "title": "Frequency",
       "transformations": [
         {
           "id": "convertFieldType",
@@ -262,8 +253,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "text",
-            "mode": "fixed"
+            "mode": "palette-classic"
           },
           "custom": {
             "axisBorderShow": false,
@@ -274,8 +264,8 @@
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
-            "fillOpacity": 20,
-            "gradientMode": "scheme",
+            "fillOpacity": 0,
+            "gradientMode": "none",
             "hideFrom": {
               "legend": false,
               "tooltip": false,
@@ -283,11 +273,8 @@
             },
             "insertNulls": false,
             "lineInterpolation": "linear",
-            "lineStyle": {
-              "fill": "solid"
-            },
-            "lineWidth": 2,
-            "pointSize": 3,
+            "lineWidth": 1,
+            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -301,7 +288,6 @@
               "mode": "off"
             }
           },
-          "fieldMinMax": false,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -309,10 +295,14 @@
               {
                 "color": "green",
                 "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
               }
             ]
           },
-          "unit": "pressurembar"
+          "unit": "volt"
         },
         "overrides": []
       },
@@ -328,7 +318,7 @@
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "hideZeros": false,
@@ -345,19 +335,18 @@
             "uid": "MongoDB"
           },
           "queryLanguage": "json",
-          "queryText": "[\n  {\n    \"$match\": {\n      \"sensor_name\": \"get_actual_pressure\"\n    }\n  }\n]",
+          "queryText": "[\n  {\n    \"$match\": {\n      \"sensor_name\": \"voltage\"\n    }\n  }\n]",
           "queryType": "table",
           "refId": "A"
         }
       ],
-      "title": "Pressure",
+      "title": "Voltage",
       "transformations": [
         {
           "id": "convertFieldType",
           "options": {
             "conversions": [
               {
-                "dateFormat": "",
                 "destinationType": "time",
                 "targetField": "timestamp"
               }
@@ -377,13 +366,13 @@
     "list": []
   },
   "time": {
-    "from": "2025-03-15T09:10:48.000Z",
-    "to": "2025-03-15T09:11:50.000Z"
+    "from": "now-15m",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Vacuumsystem",
-  "uid": "Vacuumsystem",
-  "version": 3,
+  "title": "Highvoltagesystem",
+  "uid": "beoqf5q5xhj40d",
+  "version": 8,
   "weekStart": ""
 }
