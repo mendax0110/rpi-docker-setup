@@ -1,110 +1,169 @@
-# Raspberry Pi Docker Setup with FFRHAS
+# Raspberry Pi Dockerized Environment for FFRHAS
 
-This repository contains Docker configurations and scripts to set up a Raspberry Pi-compatible environment, integrating the FFRHAS app as a submodule.
+A complete, reproducible, and extensible Docker-based setup for running the FFRHAS application stack on Raspberry Pi. This repository provides everything you need: application, database, monitoring, and system scripts.
+
+---
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Architecture](#architecture)
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Quick Start](#quick-start)
+- [Service Details](#service-details)
+- [Configuration](#configuration)
+- [Development & Maintenance](#development--maintenance)
+- [Useful Docker Commands](#useful-docker-commands)
+- [Scripts](#scripts)
+- [References](#references)
+
+---
+
+## Overview
+
+This project enables you to deploy the FFRHAS Python/Flask application, MongoDB, and Grafana (with MongoDB datasource) on a Raspberry Pi using Docker Compose. It includes scripts for system setup and network configuration, and supports persistent storage and environment-based configuration.
+
+---
+
+## Architecture
+
+```
++-------------------+      +-------------------+      +-------------------+
+|    Flask App      |<---->|     MongoDB       |<---->|     Grafana       |
+|  (FFRHAS)         |      |   (arm64v8)       |      | (with MongoDB     |
+|                   |      |                   |      |  datasource)      |
++-------------------+      +-------------------+      +-------------------+
+        |                        |                           |
+        +------------------------+---------------------------+
+                             Docker Compose
+```
+
+- **Flask App**: Python 3.9, runs FFRHAS from `/opt/FFRHAS/HAS`
+- **MongoDB**: ARM64 image, persistent storage
+- **Grafana**: Pre-configured with MongoDB datasource plugin
+
+---
 
 ## Features
-- **Python 3** with Flask application (FFRHAS submodule)
-- **MongoDB** database setup
-- Static IP configuration for **Ethernet**
-- **User `pi`** with sudo access
-- Support for **environment variables** via `.env`
+
+- **Multi-container orchestration** with Docker Compose
+- **ARM64 support** for Raspberry Pi 4/5 and similar devices
+- **Persistent volumes** for MongoDB and Grafana data
+- **Environment variable configuration** via `.env`
+- **Static IP setup** for Ethernet via included scripts
+- **Pre-installed utilities** for Raspberry Pi setup
+- **Grafana** with MongoDB datasource for monitoring and dashboards
+
+---
 
 ## Prerequisites
-- Raspberry Pi with Docker installed
-- Git installed on your Raspberry Pi
 
-## Getting Started
+- Raspberry Pi (recommended: Pi 4 or newer, 64-bit OS)
+- Docker & Docker Compose installed
+- Git installed
 
-### 1. Clone the repository and initialize the submodule:
+---
 
-```bash
-git clone https://github.com/mendax0110/rpi-docker-setup.git
-cd rpi-docker-setup
-git submodule init
-git submodule update --init --recursive
-sudo chmod -R 777 grafana
-```
+## Quick Start
 
-### 2.  Build the Docker image:
+1. **Clone the repository and initialize submodules:**
+    ```bash
+    git clone https://github.com/mendax0110/rpi-docker-setup.git
+    cd rpi-docker-setup
+    git submodule update --init --recursive
+    sudo chmod -R 777 grafana
+    ```
 
-```bash
-docker-compose build --no-cache
-```
+2. **Configure environment variables:**
+    - Copy `.env.example` to `.env` and edit as needed (MongoDB, Grafana credentials, etc.)
 
-### 3. Orchestrate with Docker Compose:
+3. **Build and start the stack:**
+    ```bash
+    docker-compose build --no-cache
+    docker-compose up -d
+    ```
 
-```bash
-docker-compose up -d
-```
+4. **Access services:**
+    - **Flask App**: [http://localhost:5000](http://localhost:5000)
+    - **MongoDB**: `localhost:27017`
+    - **Grafana**: [http://localhost:3000](http://localhost:3000)
 
-### 4. General important Docker commands:
+---
 
-- 1. Check the logs
-```bash
-docker-compose logs
-```
+## Service Details
 
-- 2. Check the logs realtime
-```bash
-docker-compose logs -f
-```
+| Service    | Port   | Description                                   | Data Volume                      |
+|------------|--------|-----------------------------------------------|----------------------------------|
+| Flask App  | 5000   | Main Python/Flask application (FFRHAS)        | -                                |
+| MongoDB    | 27017  | Database, ARM64 image                         | `./mongo/data:/data/db`          |
+| Grafana    | 3000   | Dashboards, MongoDB datasource pre-installed  | `./grafana/grafana_storage`      |
 
-- 3. Check the logs of specific service
-```bash
-docker-compose logs <service-name>
-```
+---
 
-- 4. Restart Services
-```bash
-docker-compose restart
-```
+## Configuration
 
-- 5. Restart specific service
-```bash
-docker-compose restart <service-name>
-```
+- **Environment Variables**:  
+  Set in `.env` (see `.env.example` for all options).
+- **Volumes**:  
+  Data is persisted in `mongo/data` and `grafana/grafana_storage`.
+- **Network**:  
+  All services are on the `app_network` Docker bridge.
 
-- 6. Start Services
-```bash
-docker-compose up
-```
+---
 
-- 7. Start Services in background
-```bash
-docker-compose up -d
-```
+## Development & Maintenance
 
-- 8. Start specific service
-```bash
-docker-compose up <service-name>
-```
+- **Submodules**:  
+  FFRHAS is included as a git submodule. Update with:
+  ```bash
+  git submodule update --remote
+  ```
+- **Scripts**:  
+  - `init-scripts/setup-network.sh`: Configure static IP for Ethernet
+  - `utils/setup_pi.sh`: Install essential packages on a new Pi
 
-- 9. Stop Services
-```bash
-docker-compose stop
-```
+---
 
-- 10. Stop specific service
-```bash
-docker-compose stop <service-name>
-```
+## Useful Docker Commands
 
-- 11. Rebuild Services
-```bash
-docker-compose build
-```
+| Action                       | Command                                 |
+|------------------------------|-----------------------------------------|
+| Build all services           | `docker-compose build`                  |
+| Build without cache          | `docker-compose build --no-cache`       |
+| Start services (foreground)  | `docker-compose up`                     |
+| Start services (background)  | `docker-compose up -d`                  |
+| Stop services                | `docker-compose stop`                   |
+| Restart services             | `docker-compose restart`                |
+| View logs                    | `docker-compose logs`                   |
+| View logs (follow)           | `docker-compose logs -f`                |
+| Logs for a service           | `docker-compose logs <service>`         |
+| Status                       | `docker-compose ps`                     |
+| Remove all containers        | `docker-compose down`                   |
 
-- 12. Rebuild without cache
-```bash
-docker-compose build --no-cache
-```
+---
 
-- 13. Check Status
-```bash
-docker-compose ps
-```
+## Scripts
 
-- 14. Shut down and remove all containers
-```bash
-docker-compose down
-```
+- **Network Setup**:  
+  [`init-scripts/setup-network.sh`](init-scripts/setup-network.sh)  
+  Sets a static IP for `eth0` via `/etc/network/interfaces`.
+
+- **Raspberry Pi Essentials**:  
+  [`utils/setup_pi.sh`](utils/setup_pi.sh)  
+  Installs common tools and Python dependencies.
+
+---
+
+## References
+
+- [FFRHAS App](https://github.com/mendax0110/FFRHAS)
+- [MongoDB ARM64 Docker Image](https://hub.docker.com/r/arm64v8/mongo)
+- [Grafana OSS](https://grafana.com/grafana/download)
+- [MongoDB Grafana Datasource](https://github.com/haohanyang/mongodb-datasource)
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
